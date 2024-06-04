@@ -1,5 +1,5 @@
 
-package usasigno;
+package Usasigno;
 
 import java.util.Calendar;
 import java.util.Scanner;
@@ -9,7 +9,7 @@ public class UsaSigno {
     
     public static void main(String[] args) {
         Scanner ler = new Scanner(System.in);
-        Calendar hoje=Calendar.getInstance();
+        Calendar hoje = Calendar.getInstance();
         int diaA = hoje.get(Calendar.DATE);
         int mesA = hoje.get(Calendar.MONTH);
         int anoA = hoje.get(Calendar.YEAR);
@@ -32,6 +32,7 @@ public class UsaSigno {
         if (diaNascimento<1 || diaNascimento>31){
             System.out.println("Dia do Nascimento inválido ");
             return;
+         
         }
         //Coletando e Validando mês do Nascimento;
         System.out.println("Digite o mês do seu Nascimento (1-12): ");
@@ -60,10 +61,19 @@ public class UsaSigno {
             System.out.println("Erro: Fevereiro só tem 28 dias ");
             return;
         }
+        //Verificando se a data de Nascimento é no futuro 
+        if(anoNascimento>anoA || (anoNascimento == anoA && mesNascimento > mesA)||(anoNascimento == anoA && mesNascimento == mesA && diaNascimento>diaA)){
+            System.out.println("Erro: Data de nascimento no futuro.");
+           return;
         //Calculando a idade;
         int idade = anoA - anoNascimento;
         if (mesA < mesNascimento || (mesA == mesNascimento && diaA < diaNascimento)){
             idade--;
+        }
+        //Determinando os meses de vida
+         int mesesDeVida = (anoA-anoNascimento)*12 + (mesA - mesNascimento);
+        if(diaA < diaNascimento){
+          mesesDeVida--;
         }
         //Determinando o Signo 
         String signo = determinarSigno(anoNascimento, mesNascimento);
@@ -75,7 +85,7 @@ public class UsaSigno {
         }else {
             System.out.println("Sr. " +nome+ " ,nascido no dia " +diaNascimento+ "/" +mesNascimento+ "/" +anoNascimento+ " é do signo de "  +signo+ " você tem " +idade+ " anos - seu número da sorte é " +numSorte+ " e sua cor: verde");
         }
-        ler.close();
+        
     }
 
     public static String determinarSigno(int dia, int mes) {
