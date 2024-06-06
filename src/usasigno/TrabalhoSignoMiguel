@@ -16,9 +16,9 @@ public class UsaSigno {
         //Coletndo e Validando o Nome;
         System.out.println("Digite seu nome: ");
         String nome = ler.nextLine();
-        if(nome.length()<=8){
-            nome = "Legal se o seu nome fosse verdadeiro";
-            
+        if(nome.length()<8){
+        System.out.println("Seu nome deve ter no minimo 8 caracteres");
+        return;
         }
         //Coletando e Validando o Sexo;
         System.out.println("Digite o seu sexo(1-Feminino, 2-Masculino): ");
@@ -76,7 +76,7 @@ public class UsaSigno {
           mesesDeVida--;
         }
         //Determinando o Signo 
-        String signo = determinarSigno(anoNascimento, mesNascimento);
+        String signo = determinarSigno(diaNascimento, mesNascimento);
         //Sorteando o Número da Sorte;
         int numSorte = (int)(1+Math.random()*99);
         //Saída Personalizada
